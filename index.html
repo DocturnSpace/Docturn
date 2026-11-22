@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Docturn — приложение для хранения, систематизации и повседневной работы с документами.">
+<title>Docturn — Customer Space</title>
+<style>
+:root{--ink:#17191d;--muted:#70757d;--line:#e7e8ea;--paper:#fbfbfa;--soft:#f1f2f2;--red:#df3935;--dark:#202329;--green:#247a55}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}.wrap{width:min(1160px,calc(100% - 44px));margin:auto}
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.logo{font-size:25px;font-weight:780;letter-spacing:-1.3px}.logo i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-left:2px}
+.navlinks{display:flex;gap:27px;color:#666;font-size:13px}.navlinks a:hover{color:var(--red)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 19px;border-radius:999px;background:var(--red);color:#fff;font-weight:650;font-size:13px;border:1px solid var(--red);cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-1px);background:#c92f2b}.btn-outline{background:transparent;color:var(--ink);border-color:#d9dadd}.btn-outline:hover{background:#f0f0ef}
+.hero{padding:100px 0 88px;display:grid;grid-template-columns:1fr .92fr;gap:54px;align-items:center}
+.eyebrow{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--red);font-weight:750}
+h1{font-size:clamp(66px,9vw,112px);line-height:.9;letter-spacing:-.09em;margin:23px 0 22px;font-weight:760}
+.lead{font-size:19px;line-height:1.65;color:var(--muted);max-width:530px;margin:0 0 27px}
+.hero-actions{display:flex;gap:11px;flex-wrap:wrap}
+.hero-art{min-height:390px;background:#f0f0ed;border-radius:28px;position:relative;overflow:hidden;padding:28px;display:flex;align-items:center;justify-content:center}
+.chat-window{position:relative;z-index:1;width:min(100%,390px);background:#fff;border:1px solid #e7e7e5;border-radius:20px;box-shadow:0 22px 60px #00000012;padding:19px}
+.chat-head{display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--line);font-size:12px;font-weight:750}
+.chat-avatar{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;background:#fce8e6;color:var(--red);font-weight:800}
+.chat-status{margin-left:auto;color:#999;font-size:10px;font-weight:500}
+.chat-date{text-align:center;color:#a0a0a0;font-size:9px;margin:14px 0}
+.chat-msg{max-width:88%;padding:11px 13px;border-radius:13px;margin:9px 0;font-size:12px;line-height:1.45}
+.chat-msg.incoming{background:#f1f2f2;border-bottom-left-radius:4px;color:#34373c}
+.chat-msg.outgoing{background:#fff0ef;border-bottom-right-radius:4px;color:#74312e;margin-left:auto}
+.chat-time{display:block;text-align:right;color:#999;font-size:9px;margin-top:5px}
+.chat-problem{margin-top:15px;padding:11px 12px;border:1px solid #f0d3a8;background:#fff8eb;border-radius:11px;color:#79551d;font-size:10px;line-height:1.5}
+.chat-problem b{display:block;margin-bottom:3px;color:#684713}
+.section{padding:88px 0;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:38px}
+h2{font-size:clamp(34px,5vw,57px);letter-spacing:-.065em;line-height:1.03;margin:12px 0 0;max-width:680px}
+.section-head p{max-width:360px;color:var(--muted);line-height:1.7;font-size:14px;margin:0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:#f1f1ee;border-radius:18px;padding:25px;min-height:205px;display:flex;flex-direction:column;justify-content:space-between}
+.num{color:var(--red);font-size:11px;font-weight:750;letter-spacing:1px}.card h3{font-size:21px;line-height:1.2;letter-spacing:-.6px;margin:28px 0 8px}.card p{font-size:13px;line-height:1.6;color:var(--muted);margin:0}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.feature{border:1px solid var(--line);border-radius:18px;padding:25px;background:#fff;min-height:170px}
+.feature-icon{width:38px;height:38px;border-radius:11px;background:#fff0ef;color:var(--red);display:grid;place-items:center;font-size:18px}.feature h3{font-size:18px;margin:18px 0 8px}.feature p{font-size:13px;color:var(--muted);line-height:1.65;margin:0}
+.dark-panel{background:var(--dark);color:#fff;border-radius:26px;padding:46px;display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center}
+.dark-panel h2{font-size:clamp(30px,4vw,47px)}.dark-panel p{color:#b9bdc4;line-height:1.7;font-size:14px}
+.mock{background:#282c33;border:1px solid #41464f;border-radius:16px;padding:18px}.mock-top{display:flex;justify-content:space-between;color:#eee;font-size:12px;padding-bottom:14px;border-bottom:1px solid #41464f}
+.mock-row{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid #393e46;color:#eee;font-size:12px}.file{width:31px;height:36px;border-radius:7px;background:#3b414b;display:grid;place-items:center;color:#ff837d;font-size:9px;font-weight:800}.mock-row small{margin-left:auto;color:#aeb3bb}
+.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.phase{border:1px solid var(--line);border-radius:17px;padding:21px;background:#fff;min-height:230px}.phase .phase-no{color:var(--red);font-size:11px;font-weight:800;letter-spacing:1px}.phase h3{font-size:18px;line-height:1.2;margin:20px 0 10px}.phase p{color:var(--muted);font-size:12px;line-height:1.65;margin:0}.phase-tag{display:inline-block;margin-top:18px;padding:6px 9px;border-radius:99px;background:#f1f2f2;color:#666;font-size:10px;font-weight:700}
+.phase.current{border:2px solid #2d806f;background:#f0f8f5;box-shadow:0 10px 28px #236b5514;position:relative}
+.phase.current .phase-no{color:#23735f}
+.phase.current h3{color:#205f50}
+.phase.current .phase-tag{background:#d9eee6;color:#205f50}
+.phase-tag.current-tag{display:inline-flex;align-items:center;gap:6px;background:#23735f;color:#fff;font-size:10px;letter-spacing:.3px}
+.phase-tag.current-tag:before{content:"";width:6px;height:6px;border-radius:50%;background:#fff;display:inline-block}
+.roadmap-note{font-size:12px;color:var(--muted);margin-top:17px;line-height:1.6}
+.updates{display:grid;grid-template-columns:1fr 1fr;gap:14px}.update{border:1px solid var(--line);border-radius:16px;padding:22px}.update .date{font-size:10px;color:var(--red);font-weight:800;letter-spacing:1px}.update h3{font-size:17px;margin:12px 0 7px}.update p{font-size:13px;line-height:1.6;color:var(--muted);margin:0}
+.register{background:#f0f0ed;border-radius:26px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.register h2{font-size:clamp(32px,4vw,48px)}.register p{color:var(--muted);font-size:14px;line-height:1.7}
+.form{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:13px}
+label{font-size:11px;font-weight:700;color:#555}.field{display:grid;gap:7px}
+input,select{width:100%;padding:13px 14px;border:1px solid #dedfe1;border-radius:10px;font:inherit;font-size:13px;background:#fff;color:var(--ink);outline:none}
+input:focus,select:focus{border-color:var(--red);box-shadow:0 0 0 3px #df39351a}
+.consent{display:flex;align-items:flex-start;gap:9px;font-size:10px;line-height:1.5;color:var(--muted)}.consent input{width:15px;margin-top:1px}
+.form .btn{width:100%;border:0}.form-note{font-size:10px;color:#8a8e95;line-height:1.5;margin:0}
+.contact{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:30px 0}.contact a{font-weight:700;color:var(--red)}
+.footer{padding:28px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:#858585;font-size:12px}.footer b{font-size:19px;color:var(--ink);letter-spacing:-1px}
+@media(max-width:800px){.navlinks{display:none}.hero{padding:68px 0 60px;grid-template-columns:1fr;gap:34px}.hero-art{min-height:320px}.section{padding:66px 0}.section-head{display:block}.section-head p{margin-top:17px}.cards{grid-template-columns:1fr}.card{min-height:160px}.feature-grid{grid-template-columns:1fr}.dark-panel{padding:29px 22px;grid-template-columns:1fr;gap:20px}.roadmap{grid-template-columns:1fr 1fr}.updates{grid-template-columns:1fr}.register{padding:30px 21px;grid-template-columns:1fr;gap:20px}.contact{align-items:flex-start;flex-direction:column}}
+@media(max-width:430px){.wrap{width:calc(100% - 32px)}.roadmap{grid-template-columns:1fr}.hero-actions .btn{width:100%}.chat-window{padding:15px}.chat-msg{font-size:11px}}
+</style>
+</head>
+<body>
+<header class="wrap nav">
+  <a class="logo" href="#top">Docturn<i></i></a>
+  <nav class="navlinks"><a href="#product">О продукте</a><a href="#features">Возможности</a><a href="#roadmap">Разработка</a><a href="#updates">Обновления</a></nav>
+  <a class="btn btn-outline" href="#register">Предрегистрация</a>
+</header>
+
+<main id="top">
+<section class="wrap hero">
+  <div>
+    <div class="eyebrow">Приложение для работы с документами</div>
+    <h1>Docturn</h1>
+    <p class="lead">Пространство для хранения, систематизации и повседневного использования документов. Находите нужное, работайте с шаблонами и не забывайте о важных сроках.</p>
+    <div class="hero-actions"><a class="btn" href="#register">Пройти предрегистрацию <span>↗</span></a><a class="btn btn-outline" href="#product">Узнать о продукте</a></div>
+  </div>
+  <div class="hero-art" aria-label="Пример переписки, показывающей проблему поиска документов">
+    <div class="chat-window">
+      <div class="chat-head"><span class="chat-avatar">Ч</span><span>Рабочий чат</span><span class="chat-status">сегодня</span></div>
+      <div class="chat-date">10:42</div>
+      <div class="chat-msg incoming">Срочно, есть фотография договора?</div>
+      <div class="chat-msg outgoing">Сейчас посмотрю, где он у меня…<span class="chat-time">10:43</span></div>
+      <div class="chat-msg incoming">И скинь номер соцкарты, пожалуйста.</div>
+      <div class="chat-msg outgoing">Подожди, нужно найти документы.</div>
+      <div class="chat-problem"><b>Знакомая ситуация?</b>Важные документы разбросаны по чатам, папкам и устройствам — нужное приходится искать в самый неподходящий момент.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="product"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">О продукте</div><h2>Документы, с которыми удобно работать.</h2></div><p>Docturn — приложение, которое объединяет хранение документов и инструменты для работы с ними в одном организованном пространстве.</p></div>
+  <div class="cards">
+    <article class="card"><span class="num">01 / ХРАНЕНИЕ</span><div><h3>Все документы в одном месте</h3><p>Цифровое пространство, в котором документы можно хранить и поддерживать в порядке.</p></div></article>
+    <article class="card"><span class="num">02 / СИСТЕМАТИЗАЦИЯ</span><div><h3>Понятная структура</h3><p>Организация документов помогает быстрее ориентироваться в файлах и находить нужное.</p></div></article>
+    <article class="card"><span class="num">03 / ИСПОЛЬЗОВАНИЕ</span><div><h3>Не только архив</h3><p>Шаблоны и напоминания помогают использовать документы в повседневных задачах.</p></div></article>
+  </div>
+</div></section>
+
+<section class="section" id="features"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">Возможности</div><h2>От хранения до повседневных задач.</h2></div><p>Основные направления функциональности Docturn. Конкретный набор возможностей будет уточняться по мере разработки.</p></div>
+  <div class="feature-grid">
+    <article class="feature"><div class="feature-icon">▤</div><h3>Хранение документов</h3><p>Храните цифровые документы в едином пространстве вместо разрозненных папок и источников.</p></article>
+    <article class="feature"><div class="feature-icon">⌕</div><h3>Систематизация и поиск</h3><p>Организуйте документы по понятной структуре, чтобы проще ориентироваться и находить нужные файлы.</p></article>
+    <article class="feature"><div class="feature-icon">▧</div><h3>Шаблоны документов</h3><p>Используйте готовые шаблоны для подготовки типовых документов и сокращения повторяющейся работы.</p></article>
+    <article class="feature"><div class="feature-icon">◷</div><h3>Напоминания о сроках</h3><p>Настраивайте напоминания о важных датах и сроках действия документов, если это необходимо.</p></article>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="dark-panel">
+    <div><div class="eyebrow">Какую задачу решает Docturn</div><h2>Меньше времени на организацию. Больше ясности в работе.</h2><p>Когда документы хранятся в разных местах, поиск и использование нужного файла превращаются в отдельную задачу. Docturn создаётся, чтобы объединить эти процессы: хранить документы, систематизировать их, работать с шаблонами и следить за сроками.</p></div>
+    <div class="mock"><div class="mock-top"><b>Мои документы</b><span>•••</span></div><div class="mock-row"><div class="file">PDF</div><b>Договор.pdf</b><small>Документы</small></div><div class="mock-row"><div class="file">DOC</div><b>Шаблон заявления</b><small>Шаблоны</small></div><div class="mock-row"><div class="file">PDF</div><b>Счёт компании.pdf</b><small>Документы</small></div></div>
+  </div>
+</div></section>
+
+<section class="section" id="roadmap"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">Development roadmap</div><h2>Как развивается Docturn.</h2></div><p>Публичная дорожная карта показывает основные этапы создания продукта. Фактический статус каждого этапа команда будет обновлять отдельно.</p></div>
+  <div class="roadmap">
+    <article class="phase current"><span class="phase-no">PHASE 01</span><h3>Исследование и концепция</h3><p>Определение потребностей пользователей, ключевых сценариев, проблем хранения и использования документов. Формирование требований к продукту.</p><span class="phase-tag">Исследование</span><span class="phase-tag current-tag">СЕЙЧАС · ТЕКУЩИЙ ЭТАП</span></article>
+    <article class="phase"><span class="phase-no">PHASE 02</span><h3>Проектирование и MVP</h3><p>Проектирование интерфейса и структуры приложения. Разработка базового хранения, систематизации, шаблонов и настройки напоминаний.</p><span class="phase-tag">Создание продукта</span></article>
+    <article class="phase"><span class="phase-no">PHASE 03</span><h3>Закрытое тестирование</h3><p>Проверка основных сценариев с ограниченной группой пользователей. Сбор обратной связи, исправление ошибок и улучшение удобства.</p><span class="phase-tag">Beta testing</span></article>
+    <article class="phase"><span class="phase-no">PHASE 04</span><h3>Запуск и развитие</h3><p>Подготовка публичного доступа, знакомство новых пользователей с продуктом и дальнейшее развитие функциональности на основе обратной связи.</p><span class="phase-tag">Launch</span></article>
+  </div>
+  <p class="roadmap-note">Это план последовательности работ, а не заявление о том, что отдельные этапы уже завершены. Команда Docturn сможет публиковать фактический статус и изменения по мере продвижения.</p>
+</div></section>
+
+<section class="section" id="updates"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">Updates</div><h2>Новости разработки.</h2></div><p>Здесь будут появляться новости о ходе работы, новых возможностях и важных изменениях в проекте.</p></div>
+  <div class="updates">
+    <article class="update"><div class="date">ПУБЛИКАЦИИ КОМАНДЫ</div><h3>Следите за развитием Docturn</h3><p>Мы будем делиться тем, над чем работаем, какие задачи решаем и что планируем дальше.</p></article>
+    <article class="update"><div class="date">ОБРАТНАЯ СВЯЗЬ</div><h3>Ваше мнение важно</h3><p>Предложения и вопросы будущих пользователей помогут лучше понять приоритеты продукта.</p></article>
+  </div>
+</div></section>
+
+<section class="section" id="register"><div class="wrap">
+  <div class="register">
+    <div><div class="eyebrow">Early access</div><h2>Присоединяйтесь к Docturn.</h2><p>Оставьте контактные данные, чтобы выразить интерес к продукту и получать новости о разработке и возможности раннего доступа.</p><p>Предварительная регистрация не означает автоматического доступа к приложению. Когда появится программа тестирования, команда сможет связаться с заинтересованными пользователями.</p></div>
+    <form class="form" id="preRegForm">
+      <div class="field"><label for="name">Имя</label><input id="name" name="name" autocomplete="name" placeholder="Как к вам обращаться" required></div>
+      <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required></div>
+      <div class="field"><label for="type">Как вы планируете использовать Docturn?</label><select id="type" name="type" required><option value="">Выберите вариант</option><option>Для личных документов</option><option>Для ИП / малого бизнеса</option><option>Для команды или компании</option><option>Пока изучаю продукт</option></select></div>
+      <label class="consent"><input type="checkbox" id="consent" required><span>Я согласен(на), чтобы команда Docturn использовала указанные данные для связи по поводу предварительной регистрации и новостей продукта.</span></label>
+      <button class="btn" type="submit">Отправить заявку <span>↗</span></button>
+      <p class="form-note">После нажатия откроется ваше почтовое приложение с подготовленной заявкой на DocturnSpace@gmail.com. Для полноценной автоматической регистрации, подтверждения email и сохранения заявок в базе потребуется подключить серверную часть.</p>
+      <div id="formMessage" role="status" aria-live="polite" style="font-size:12px;color:#247a55"></div>
+    </form>
+  </div>
+</div></section>
+
+<section class="wrap contact">
+  <div><div class="eyebrow">Contact</div><h2 style="font-size:30px;margin-top:9px">Есть вопрос или предложение?</h2></div>
+  <a href="mailto:DocturnSpace@gmail.com">DocturnSpace@gmail.com ↗</a>
+</section>
+</main>
+<footer class="wrap footer"><b>Docturn</b><span>© 2026 Docturn</span><span>Customer Space · Product development</span></footer>
+
+<script>
+document.getElementById('preRegForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  if(!this.reportValidity()) return;
+  const name=document.getElementById('name').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const type=document.getElementById('type').value;
+  const subject=encodeURIComponent('Docturn — предварительная регистрация');
+  const body=encodeURIComponent('Здравствуйте! Хочу пройти предварительную регистрацию в Docturn.\n\nИмя: '+name+'\nEmail: '+email+'\nПланируемое использование: '+type+'\n\nСогласие на связь предоставлено через форму на сайте.');
+  document.getElementById('formMessage').textContent='Открываем почтовое приложение для отправки заявки…';
+  window.location.href='mailto:DocturnSpace@gmail.com?subject='+subject+'&body='+body;
+});
+</script>
+</body>
+</html>
